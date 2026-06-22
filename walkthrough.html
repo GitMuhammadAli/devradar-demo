@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DevRadar — reel</title>
+<style>
+:root{--accent:#6366f1;--accent-ink:#ededff;--accent-soft:rgba(99,102,241,.16);--bg:#0a0a12;--surface:#121220;--raised:#191928;--hover:#20203160;--border:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.14);--text:#ececf4;--muted:#8b8ba6;--faint:#5d5d75;--good:#34d399;--f:ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,Menlo,monospace}
+*{margin:0;padding:0;box-sizing:border-box}html,body{height:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--f);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden}
+.tnum{font-variant-numeric:tabular-nums}button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+.app{display:grid;grid-template-columns:230px 1fr;height:100vh}
+.side{background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:14px 12px}
+.brand{display:flex;align-items:center;gap:9px;padding:6px 8px 16px;font-weight:700;font-size:16px;letter-spacing:-.01em}
+.brand .mk{width:24px;height:24px;border-radius:7px;background:var(--accent);display:grid;place-items:center;color:#0a0a12}
+.nav button{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:10px;color:var(--muted);font-weight:500;width:100%;text-align:left;margin-bottom:2px}
+.nav button.on{background:var(--accent-soft);color:#a5a8ff}
+.nav .ic{width:17px;height:17px}
+.side-foot{margin-top:auto}
+.credit{background:var(--raised);border:1px solid var(--border);border-radius:10px;padding:11px 12px}
+.credit .top{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:7px}.credit .top b{color:var(--text)}
+.credit .track{height:5px;border-radius:99px;background:#262636;overflow:hidden}.credit .fill{height:100%;background:var(--accent);width:84%}
+.usr{display:flex;align-items:center;gap:9px;padding:9px 6px 2px}.av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#818cf8,#a78bfa);display:grid;place-items:center;font-size:12px;font-weight:700;color:#0a0a12}.usr .nm{font-size:12.5px;font-weight:600}.usr .em{font-size:11px;color:var(--faint)}
+.main{display:flex;flex-direction:column;min-width:0}
+.top{height:56px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;padding:0 24px}
+.top h1{font-size:15px;font-weight:600}
+.content{flex:1;overflow:auto;padding:26px 28px}
+.h2{font-size:22px;font-weight:700;letter-spacing:-.02em}.sub{color:var(--muted);font-size:13px;margin-top:3px}
+.grid2{display:grid;grid-template-columns:1.05fr 1fr;gap:18px;margin-top:22px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 20px}
+.card .lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:700;margin-bottom:14px}
+.bar{margin-bottom:14px}.bar .b1{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:6px}.bar .b1 b{font-weight:600}.bar .b1 .g{color:var(--good);font-weight:700;font-family:var(--mono);font-size:12.5px}
+.bar .track{height:8px;border-radius:99px;background:#22222f;overflow:hidden}.bar .fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),#818cf8);width:0;transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+/* chat */
+.chat{display:flex;flex-direction:column;height:430px}
+.msgs{flex:1;overflow:auto;display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
+.bub{padding:12px 15px;border-radius:15px;font-size:13.5px;line-height:1.5;max-width:88%}
+.bub.in{background:#1d1d2e;border-bottom-left-radius:5px;align-self:flex-start}
+.bub.out{background:var(--accent);color:#0a0a12;border-bottom-right-radius:5px;align-self:flex-end;font-weight:500}
+.ring{display:inline-flex;align-items:center;gap:10px;margin:4px 0 8px;font-weight:700}
+.ring .r{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:14px;color:var(--accent);background:conic-gradient(var(--accent) 0,var(--accent) 0,#22222f 0)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.chip{font-size:11.5px;padding:4px 10px;border-radius:99px;background:#22222f;color:var(--muted)}.chip.gap{background:rgba(244,73,107,.14);color:#ff86a0}.chip.have{background:var(--accent-soft);color:#a5a8ff}
+.composer{display:flex;gap:9px;margin-top:12px}
+.composer .inp{flex:1;background:var(--raised);border:1px solid var(--border);border-radius:11px;padding:11px 14px;font-size:13.5px;color:var(--text);min-height:44px;display:flex;align-items:center}
+.composer .inp .ph{color:var(--faint)}.c5{color:var(--accent)}
+.send{background:var(--accent);color:#0a0a12;border-radius:11px;padding:0 16px;font-weight:600;display:flex;align-items:center;gap:7px}
+.cursor{position:fixed;top:0;left:0;width:26px;height:26px;z-index:95;pointer-events:none;opacity:0;transition:transform .85s cubic-bezier(.45,0,.16,1),opacity .35s;filter:drop-shadow(0 3px 6px rgba(0,0,0,.6))}
+.ripple{position:fixed;left:0;top:0;width:40px;height:40px;border-radius:50%;border:2px solid var(--accent);z-index:94;opacity:0;transform:translate(-50%,-50%)}
+.ripple.go{animation:rip .6s ease-out}@keyframes rip{0%{opacity:.95;transform:translate(-50%,-50%) scale(.25)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.6)}}
+.fade{animation:fade .4s both}@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+</style></head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><span class="mk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9" opacity=".5"/></svg></span> DevRadar</div>
+    <nav class="nav">
+      <button class="on"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3"/></svg>Skill radar</button>
+      <button><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-5"/></svg>Salaries</button>
+      <button><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>Skill gaps</button>
+      <button><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>Interview prep</button>
+    </nav>
+    <div class="side-foot">
+      <div class="credit"><div class="top"><span>Market scans</span><span><b class="tnum">42</b> / 50</span></div><div class="track"><div class="fill"></div></div></div>
+      <div class="usr"><div class="av">AS</div><div><div class="nm">Ali Shahid</div><div class="em">Senior Engineer</div></div></div>
+    </div>
+  </aside>
+  <div class="main">
+    <header class="top"><h1>Skill radar</h1></header>
+    <div class="content">
+      <div class="h2">The dev market, in real time</div><div class="sub">50,000+ postings · indexed weekly</div>
+      <div class="grid2">
+        <div class="card"><div class="lbl">Trending skills · this week</div><div id="bars"></div></div>
+        <div class="card"><div class="lbl">Career agent</div>
+          <div class="chat"><div class="msgs" id="msgs"></div>
+            <div class="composer"><div class="inp" id="inp"><span class="ph" id="ph">Ask about your readiness…</span></div><button class="send"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-11 11"/><path d="M22 2 15 22l-4-9-9-4Z"/></svg></button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="cursor" id="cur"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" stroke="#0a0a12" stroke-width="1.2" stroke-linejoin="round"><path d="M5 3l14 6.5-6 1.8-1.8 6z"/></svg></div>
+<div class="ripple" id="rip"></div>
+<script>
+const SKILLS=[{t:"TypeScript",g:"+18%",p:92},{t:"LLM / RAG",g:"+41%",p:80},{t:"React",g:"+6%",p:74},{t:"Rust",g:"+12%",p:52},{t:"System design",g:"+22%",p:66}];
+document.getElementById('bars').innerHTML=SKILLS.map(s=>`<div class="bar"><div class="b1"><b>${s.t}</b><span class="g">${s.g}</span></div><div class="track"><div class="fill" data-w="${s.p}"></div></div></div>`).join('');
+const cur=document.getElementById('cur'),rip=document.getElementById('rip');let cx=innerWidth/2,cy=innerHeight/2;
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+function place(){cur.style.transform=`translate(${cx-3}px,${cy-3}px)`}
+function moveTo(el){return new Promise(res=>{if(!el)return res();const r=el.getBoundingClientRect();cx=r.left+r.width*.5;cy=r.top+r.height*.5;place();setTimeout(res,880)})}
+function rippleAt(){rip.style.left=cx+'px';rip.style.top=cy+'px';rip.classList.remove('go');void rip.offsetWidth;rip.classList.add('go')}
+function cap(t){try{parent.postMessage({type:'cap',tx:t},'*')}catch(e){}}
+const Q="Am I ready for a senior React role?";
+async function typeInto(){const inp=document.getElementById('inp');document.getElementById('ph').remove();let s='';for(const ch of Q){s+=ch;inp.innerHTML=`<span class="c5">${s}</span><span style="opacity:.5">▌</span>`;await wait(42)}inp.innerHTML=`<span class="c5">${s}</span>`}
+async function stream(el,text){let s='';for(const w of text.split(' ')){s+=(s?' ':'')+w;el.textContent=s;await wait(55)}}
+async function direct(){
+  cur.style.opacity='1';cx=innerWidth/2;cy=innerHeight*.5;place();
+  await wait(700);
+  document.querySelectorAll('.fill[data-w]').forEach(f=>f.style.width=f.dataset.w+'%');
+  cap('The developer job market — mapped in real time.');
+  await wait(2400);
+  cap('See what’s rising, and what it pays.');
+  await wait(2200);
+  await moveTo(document.getElementById('inp'));rippleAt();await wait(250);
+  cap('Then ask the career agent anything.');
+  await typeInto();
+  await moveTo(document.querySelector('.send'));rippleAt();await wait(200);
+  const msgs=document.getElementById('msgs');
+  msgs.innerHTML=`<div class="bub out fade">${Q}</div>`;
+  await wait(700);
+  const b=document.createElement('div');b.className='bub in fade';msgs.appendChild(b);
+  await stream(b,"You’re at 78% readiness. Strong on React & TypeScript — add system design depth and testing coverage. Here’s a focused 3-week plan.");
+  const extra=document.createElement('div');extra.className='fade';extra.style.marginTop='10px';
+  extra.innerHTML=`<div class="ring"><span class="r" style="background:conic-gradient(var(--accent) 0 78%,#22222f 78%)">78</span><span>Senior-ready</span></div><div class="chips"><span class="chip have">React</span><span class="chip have">TypeScript</span><span class="chip gap">System design</span><span class="chip gap">Testing depth</span></div>`;
+  msgs.appendChild(extra);msgs.scrollTop=msgs.scrollHeight;
+  cap('Personal interview prep, grounded in live market data.');
+  await wait(3400);
+  cap('');await wait(500);try{parent.postMessage({type:'end'},'*')}catch(e){}
+  await wait(2400);
+  msgs.innerHTML='';document.getElementById('inp').innerHTML='<span class="ph">Ask about your readiness…</span>';
+  direct();
+}
+setTimeout(direct,500);
+</script>
+</body></html>
