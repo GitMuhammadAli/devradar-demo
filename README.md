@@ -23,11 +23,11 @@ Indexes 50,000+ job postings to track skill trends, surface your resume gaps, an
 
 ## 🎬 Demo
 
-> Open [`index.html`](./index.html) for the animated product reel, or explore the live app.
+https://github.com/user-attachments/assets/bedb2026-1e28-4b64-b24a-aacde8c72931
+
+> A narrated 30-second tour of the **live product**. ▶ Also runs as an interactive film → [`index.html`](./index.html)
 
 **▶ Live:** **https://dev-radar-web.vercel.app**
-
-<!-- ![DevRadar demo](./assets/demo.gif) -->
 
 ---
 
