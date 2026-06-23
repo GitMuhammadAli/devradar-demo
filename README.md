@@ -25,7 +25,7 @@ Indexes 50,000+ job postings to track skill trends, surface your resume gaps, an
 
 https://github.com/user-attachments/assets/c16d13c7-fea4-4c68-8997-54a777c14aa6
 
-> A narrated 30-second tour of the **live product**. ▶ Also runs as an interactive film → [`index.html`](./index.html)
+> A cinematic product promo. ▶ Also runs as an interactive film → [`index.html`](./index.html)
 
 **▶ Live:** **https://dev-radar-web.vercel.app**
 
